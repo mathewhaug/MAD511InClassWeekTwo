@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Theme.LoginDemo" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Night Mode Overrides -->
+        <item name="colorPrimary">#00AA00</item>        <!-- Brighter Green -->
+        <item name="colorOnPrimary">#000000</item>       <!-- Black text on green -->
+        <item name="colorSecondary">#FDC82F</item>       <!-- Gold stays the same -->
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorSurface">#121212</item>         <!-- Dark background -->
+        <item name="colorOnSurface">#FFFFFF</item>       <!-- Light text on dark -->
     </style>
 </resources>

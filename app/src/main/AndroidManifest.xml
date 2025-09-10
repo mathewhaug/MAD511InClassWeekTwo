@@ -10,11 +10,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication" >
+        android:theme="@style/Theme.LoginDemo">
+        <!-- Theme Change above and on line 19 -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication" >
+
+            android:theme="@style/Theme.LoginDemo" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

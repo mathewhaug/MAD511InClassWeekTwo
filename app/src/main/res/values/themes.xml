@@ -1,9 +1,14 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+<!-- res/values/themes.xml -->
 
-    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.LoginDemo" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- College Colors -->
+        <item name="colorPrimary">#008000</item>      <!--St.Clair Green ™ -->
+        <item name="colorOnPrimary">#FFFFFF</item>    <!-- Text on primary-->
+        <item name="colorSecondary">#FDD017</item>   <!--StClair Gold™-->
+        <item name="colorOnSecondary">#000000</item>  <!--Text on secondary-->
+        <item name="colorSurface">#FFFFFF</item>   <!--App background-->
+    </style>
 </resources>
