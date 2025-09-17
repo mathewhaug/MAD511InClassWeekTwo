@@ -50,3 +50,4 @@ class LoginFragment : Fragment() {
         _binding = null
     }
 }
+

@@ -11,12 +11,14 @@
         android:name="com.example.myapplication.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login">
-        <!-- Add actions as needed later -->
 
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_out_right"
+            app:exitAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
