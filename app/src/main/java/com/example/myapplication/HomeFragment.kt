@@ -1,42 +1,61 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.myapplication.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
-    //Create a private var for AppViewModel again
+
+    private var _binding: FragmentHomeBinding? = null
+
+    // I broke my own rules below with the force
+    private val binding
+        get() = _binding!!
+
     private lateinit var viewModel: AppViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        //Inflate ViewBinding
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val btnLogout = view.findViewById<Button>(R.id.btnLogout)
-        btnLogout.setOnClickListener {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //Initialize ViewModel
+        viewModel = ViewModelProvider(requireActivity()).get(AppViewModel::class.java)
+
+        //Observe username and update welcome message
+        viewModel.username.observe(viewLifecycleOwner) { name ->
+            binding.textWelcome.text = "Welcome, $name"
+        }
+
+        //Logout button click
+        binding.btnLogout.setOnClickListener {
             LogoutDialogFragment {
-                // nav back to LoginFragment when confirmed
                 findNavController().navigate(R.id.loginFragment)
             }.show(parentFragmentManager, "logoutDialog")
         }
-        // Ref a textview
-        val welcomeText = view.findViewById<TextView>(R.id.textWelcome)
 
-        //Init ViewModel
-        viewModel = ViewModelProvider(requireActivity()).get(AppViewModel::class.java)
-
-        //Observe username LiveData and update UI
-        viewModel.username.observe(viewLifecycleOwner) { name ->
-            welcomeText.text = "Welcome, $name"
+        //Settings button click
+        binding.btnSettings.setOnClickListener {
+            //Remember Intents from last semester?
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            intent.putExtra("username", viewModel.username.value ?: "User")//Iff fail, default to user
+            startActivity(intent)
         }
+    }
 
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
