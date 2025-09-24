@@ -7,13 +7,13 @@
     android:fitsSystemWindows="true">
 
     <TextView
-        android:id="@+id/tvWelcome"
-        android:text="Welcome Back to our amazing app!"
-        android:textSize="24sp"
-        android:layout_marginBottom="24dp"
+        android:id="@+id/textWelcome"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        />
+        android:text="Welcome!"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
 
     <Button
         android:id="@+id/btnLogout"
