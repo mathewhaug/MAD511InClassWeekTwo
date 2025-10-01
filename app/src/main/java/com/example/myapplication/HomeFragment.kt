@@ -52,6 +52,11 @@ class HomeFragment : Fragment() {
             intent.putExtra("username", viewModel.username.value ?: "User")//Iff fail, default to user
             startActivity(intent)
         }
+
+        binding.btnNotes.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_notesFragment)
+        }
+
     }
 
     override fun onDestroyView() {
