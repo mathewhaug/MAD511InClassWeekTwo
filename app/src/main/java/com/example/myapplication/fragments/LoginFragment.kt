@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.fragments
 
 import android.os.Bundle
 import android.util.Patterns
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.myapplication.AppViewModel
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
 
