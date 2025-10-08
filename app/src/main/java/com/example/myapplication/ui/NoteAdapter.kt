@@ -16,6 +16,11 @@ class NoteAdapter(private var notes: List<Note>) : ListAdapter<Note, NoteAdapter
         return NoteViewHolder(binding)
     }
 
+
+
+
+
+
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = getItem(position) //Fixing to use the list properly
         holder.binding.textTitle.text = note.title
