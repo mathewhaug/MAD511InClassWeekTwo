@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 import com.example.myapplication.model.Note
 
 
-@Database(entities = [Note::class], version = 1, exportSchema = false)
+@Database(entities = [Note::class], version = 2, exportSchema = false)
 abstract class CoreDatabase : RoomDatabase() {
 
     abstract fun noteDao(): NoteDao
@@ -16,14 +16,18 @@ abstract class CoreDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: CoreDatabase? = null
-
+/*
+DO NOT USE .fallbackToDestructiveMigration() IN PRODUCTION
+IT WILL DELETE ALL YOUR USERS DATA - I PROMISE
+ */
         fun getDatabase(context: Context): CoreDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     CoreDatabase::class.java,
                     "core_database"
-                ).build()
+                ).fallbackToDestructiveMigration() //Destruction and rebuild when schema changes
+                    .build()
                 INSTANCE = instance
                 instance
             }
