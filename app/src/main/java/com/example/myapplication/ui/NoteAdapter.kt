@@ -2,11 +2,12 @@ package com.example.myapplication.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ItemNoteBinding
 import com.example.myapplication.model.Note
 
-class NoteAdapter(private var notes: List<Note>) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(private var notes: List<Note>) : ListAdapter<Note, NoteAdapter.NoteViewHolder>(NoteDiffCallback()){
 
     inner class NoteViewHolder(val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -16,7 +17,7 @@ class NoteAdapter(private var notes: List<Note>) : RecyclerView.Adapter<NoteAdap
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val note = notes[position]
+        val note = getItem(position) //Fixing to use the list properly
         holder.binding.textTitle.text = note.title
         holder.binding.textContent.text = note.content
     }

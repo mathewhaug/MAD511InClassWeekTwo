@@ -58,8 +58,8 @@ class NotesFragment : Fragment() {
             val pinned = notes.filter { it.isPinned } //isPinned is the new property we added
             val others = notes.filter { !it.isPinned }
 
-            pinnedAdapter.updateNotes(pinned)
-            otherAdapter.updateNotes(others)
+            pinnedAdapter.submitList(pinned)
+            otherAdapter.submitList(others)
         }
 
         //Add a dummy note with random pinned state
