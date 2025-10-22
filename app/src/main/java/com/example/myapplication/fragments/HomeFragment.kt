@@ -56,6 +56,9 @@ class HomeFragment : Fragment() {
                         },
                         onNotesClick = {
                             findNavController().navigate(R.id.action_homeFragment_to_notesFragment)
+                        },
+                        onFlightTrackerClick = {
+                            findNavController().navigate(R.id.action_homeFragment_to_flightSearchFragment)
                         }
                     )
                 }
@@ -69,7 +72,8 @@ fun HomeScreen(
     username: String,
     onLogoutClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    onNotesClick: () -> Unit
+    onNotesClick: () -> Unit,
+    onFlightTrackerClick: () -> Unit,
 ) {
     Surface(
         modifier = Modifier
@@ -127,8 +131,9 @@ fun HomeScreen(
                     modifier = Modifier
                         .weight(1f)
                         .padding(start = 8.dp)
-                        .height(120.dp),
-                    shape = RoundedCornerShape(16.dp),
+                        .height(120.dp)
+                        .clickable { onFlightTrackerClick() },
+                shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer
                     )
@@ -144,7 +149,7 @@ fun HomeScreen(
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
-                                text = "Coming Soon",
+                                text = "Coming Soon to you",
                                 fontSize = 14.sp,
                                 color = Color.Gray
                             )
@@ -173,3 +178,6 @@ fun HomeScreen(
         }
     }
 }
+
+
+

@@ -17,6 +17,15 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
+        //build.gradle :app
+        //Get items from local.properties
+        val amadeusClientId: String = providers.gradleProperty("AMADEUS_CLIENT_ID").orNull ?: ""
+        val amadeusClientSecret: String = providers.gradleProperty("AMADEUS_CLIENT_SECRET").orNull ?: ""
+        val amadeusBase: String = "https://test.api.amadeus.com"
+        //expose to buildconfig
+        buildConfigField("String", "AMADEUS_CLIENT_ID", "\"XUyRbcDgge14HI2lOpCuLVFxiOP2GrCD\"")
+        buildConfigField("String", "AMADEUS_CLIENT_SECRET", "\"F45XC5jPa02ZCLSx\"")
+        buildConfigField("String", "AMADEUS_BASE", "\"https://test.api.amadeus.com\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,6 +49,7 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
@@ -57,6 +67,8 @@ dependencies {
     implementation(libs.androidx.preference)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     kapt(libs.room.compiler)
     implementation("androidx.recyclerview:recyclerview:1.3.1")
     implementation(libs.kotlinx.coroutines.core)
@@ -76,6 +88,14 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata:1.6.0")
     implementation("androidx.compose.foundation:foundation:1.6.0")
     implementation("androidx.activity:activity-compose:1.8.2")
+
+    // Retrofit + Gson converter
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    // OkHttp (client + logging)
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
