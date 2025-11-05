@@ -1,5 +1,6 @@
 package com.example.myapplication.repository
 
+import androidx.room.Query
 import com.example.myapplication.data.NoteDao
 import com.example.myapplication.model.Note
 import kotlinx.coroutines.flow.Flow
@@ -15,4 +16,10 @@ class NoteRepository(private val dao: NoteDao) {
     suspend fun delete(note: Note) {
         dao.delete(note)
     }
+    //Exposing method for background work
+    suspend fun getAllNotesOnce(): List<Note> {
+        return dao.getAllNotesOnce()
+    }
+
+
 }

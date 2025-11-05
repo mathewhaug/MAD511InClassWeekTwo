@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * ------------------------------------------------------------
  */
 
+
 object RetrofitProvider {
 
     // Logging interceptor to show request/response info in Logcat

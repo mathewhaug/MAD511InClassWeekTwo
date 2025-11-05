@@ -22,4 +22,8 @@ interface NoteDao {
 
     @Delete
     suspend fun delete(note: Note)
+    //Seting up for background work
+    @Query("SELECT * FROM notes ORDER BY id DESC")
+    suspend fun getAllNotesOnce(): List<Note>
+
 }
