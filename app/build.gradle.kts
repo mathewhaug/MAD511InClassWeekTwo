@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.room.ktx)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+    implementation(libs.androidx.junit.ktx)
     kapt(libs.room.compiler)
     implementation("androidx.recyclerview:recyclerview:1.3.1")
     implementation(libs.kotlinx.coroutines.core)
@@ -104,7 +105,16 @@ dependencies {
 
 
 
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(kotlin("test"))
+    // For LiveData testing
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    //androidTestImplementation("androidx.fragment:fragment-testing:1.7.1")
+    debugImplementation("androidx.fragment:fragment-testing:1.7.1")
+
+
+
 }
