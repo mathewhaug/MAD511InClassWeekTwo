@@ -95,18 +95,20 @@ fun HomeScreen(
                 modifier = Modifier.padding(bottom = 24.dp)
             )
 
-            // Top Row with Notes + Flight Tracker
+            //  UPDATED ROW: Added third tile for "Crash App" (Crashlytics test)
+
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 32.dp)
             ) {
-                // Notes Box
+
+                // NOTES tile
                 Card(
                     modifier = Modifier
                         .weight(1f)
-                        .padding(end = 8.dp)
+                        .padding(end = 4.dp)
                         .height(120.dp)
                         .clickable { onNotesClick() },
                     shape = RoundedCornerShape(16.dp),
@@ -118,22 +120,18 @@ fun HomeScreen(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        Text(
-                            text = "Notes",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold
-                        )
+                        Text("Notes", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                     }
                 }
 
-                // Flight Tracker Box
+                // FLIGHT TRACKER tile
                 Card(
                     modifier = Modifier
                         .weight(1f)
-                        .padding(start = 8.dp)
+                        .padding(horizontal = 4.dp)
                         .height(120.dp)
                         .clickable { onFlightTrackerClick() },
-                shape = RoundedCornerShape(16.dp),
+                    shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer
                     )
@@ -156,9 +154,44 @@ fun HomeScreen(
                         }
                     }
                 }
+
+                // NEW CRASH TILE triggers Firebase Crashlytics crash
+
+                Card(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 4.dp)
+                        .height(120.dp)
+                        .clickable {
+                            // The actual intentional crash
+                            throw RuntimeException("Test crash triggered from Crashlytics tile")
+                        },
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFFFFCDD2) // light red tile
+                    )
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "Crash App",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Crashlytics Test",
+                                fontSize = 14.sp,
+                                color = Color.DarkGray
+                            )
+                        }
+                    }
+                }
             }
 
-            // Buttons
+            // Settings Button
             Button(
                 onClick = onSettingsClick,
                 modifier = Modifier
@@ -168,6 +201,7 @@ fun HomeScreen(
                 Text("Settings")
             }
 
+            // Logout Button
             Button(
                 onClick = onLogoutClick,
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F)),
@@ -178,6 +212,3 @@ fun HomeScreen(
         }
     }
 }
-
-
-

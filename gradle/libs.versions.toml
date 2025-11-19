@@ -40,3 +40,5 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version = "1.5.3" } # defined but NOT used
